@@ -1,0 +1,3 @@
+CREATE TABLE IF NOT EXISTS blacklisttoken(
+    token VARCHAR(255) NOT NULL
+);
