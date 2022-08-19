@@ -1,0 +1,510 @@
+openapi: 3.0.3
+info: 
+  title: simple api documentation - OpenAPI 3.0
+  version: 1.0.11
+servers:
+  - url: https://localhost:3000/api-docs/v1
+
+paths: 
+  /department:
+    get:
+      summary: get all department
+      description: This endpoints fetch all department
+      responses:
+        '200':
+          description: 'sucessfull fetch'
+        '400':
+          description: 'invalid department'
+    post:
+      summary: create new department
+      consumes: 
+        - application/json
+      parameters:
+        - in: body
+          name: department
+          description: the department to add
+          schema:
+            type: object
+            required:
+              - id:
+              - depname:
+              - parent_department:
+            properties:
+              id:
+                type: string
+                example: 'dep12'
+              depname:
+                type: string
+                example: 'ssd'
+              parent_department:
+                type: string
+                example: null         
+      responses:
+        '200':
+          description: department created successfully      
+  
+  department/{departmentId}:
+    put:
+      summary: update department
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: department
+          description: department detail to be change
+          schema:
+            type: object
+            properties:
+              depname: 
+                type: string
+              isComplete:
+                type: boolean 
+            example:
+              depname: 'management'
+              isComplete: true    
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':  
+          description: department updated successfully
+        '400':
+          description: failed to update        
+
+  /department/{departmentId}:
+    delete:
+      summary: delete department by id
+      description: delete department
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: department delete successfully
+        '400':
+          description: bad request  
+ 
+  /employee:
+    get:
+      summary: get all employee
+      description: This endpoints fetch all todos
+      responses:
+        '200':
+          description: 'sucessfull fetch'
+        '400':
+          description: 'invalid employee'
+    post:
+      summary: create new employee
+      consumes: 
+        - application/json
+      parameters:
+        - in: body
+          name: employee
+          description: the employee to add
+          schema:
+            type: object
+            required:
+              - id:
+              - first_name:
+              - last_name:
+              - email:
+              - contact:
+              - address:
+              - salary:
+              - join_date:
+              - designation:
+              - depid:
+              - uid:
+            properties:
+              id:
+                type: string
+                example: 'ei23'
+              first_name:
+                type: string
+                example: 'ayush'
+              last_name:
+                type: string
+                example: 'limbu'
+              email:
+                type: string
+                example: 'asdjd@gmail.com'
+              contact:
+                type: string
+                example: '9842310210'
+              address:
+                type: string
+                example: 'itahari'
+              salary:
+                type: string
+                example: '2000'
+              join_date:
+                type: string
+                example: '2021/04/12'
+              designstion:
+                type: string
+                example: 'senior developer'
+              depid:
+                type: string
+                example: 'dp29'
+              uid:
+                type: string
+                example: 'u123'         
+      responses:
+        200:
+          description: employee created
+  
+  
+  employee/{employeeId}:
+    put:
+      summary: update employee
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: employee
+          description: employee detail to be change
+          schema:
+            type: object
+            properties:
+              address: 
+                type: string
+              contact:
+                type: string
+              email:
+                type: string
+              salary:
+                type: string
+              join_date:
+                type: string
+              isComplete:
+                type: boolean 
+            example:
+              address: 'dharan'
+              contact: '9845678320'
+              email: 'jhiutry@gmail.com'
+              salary: '3000'
+              join_date: '2023/04/3'
+              isComplete: true    
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':  
+          description: employee updated successfully
+        '400':
+          description: failed to update        
+
+  /employee/{employeeId}:
+    delete:
+      summary: delete employee by id
+      description: delete employee
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: employee delete successfully
+        '400':
+          description: bad request  
+
+  /attendance:
+    get:
+      summary: get all attendance
+      description: This endpoints fetch all attendance
+      responses:
+        '200':
+          description: 'sucessfull fetch'
+        '400':
+          description: 'attendance'
+    post:
+      summary: create new attendance
+      consumes: 
+        - application/json
+      parameters:
+        - in: body
+          name: attendance
+          description: the attendance to add
+          schema:
+            type: object
+            required:
+              - id:
+              - date:
+              - check_in:
+              - check_out:
+              - empid:
+            properties:
+              id:
+                type: string
+                example: 'at12'
+              date:
+                type: date
+                example: '2022/05/21'
+              check_in:
+                type: time
+                example: '12:00' 
+              check_out:
+                type: time
+                example: null
+              empid:
+                type: string
+                example: 'epi2'       
+      responses:
+        '200':
+          description: attendance created successfully
+  
+  attendance/{attendanceId}:
+    put:
+      summary: update attendance
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: attendance
+          description: attendance detail to be change
+          schema:
+            type: object
+            properties:
+              check_out: 
+                type: time
+              isComplete:
+                type: boolean 
+            example:
+              check_out: '13:00'
+              isComplete: true    
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':  
+          description: attendance updated successfully
+        '400':
+          description: failed to update        
+
+  /attendance/{attendanceId}:
+    delete:
+      summary: delete attendance by id
+      description: delete attendance
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: attendance delete successfully
+        '400':
+          description: bad request 
+ 
+  /leaves:
+    get:
+      summary: take leaves
+      description: This endpoints fetch all leaves
+      responses:
+        '200':
+          description: 'sucessfull fetch'
+        '400':
+          description: 'invalid to leave'
+    post:
+      summary: create new leaves
+      consumes: 
+        - application/json
+      parameters:
+        - in: body
+          name: leaves
+          description: the leaves to add
+          schema:
+            type: object
+            required:
+              - id:
+              - date:
+              - description:
+              - status:
+              - empid:
+            properties:
+              id:
+                type: string
+                example: 'lea24'
+              date:
+                type: date
+                example: '2022/08/12'
+              description:
+                type: string
+                example: 'personal work' 
+              status:
+                type: string
+                example: true
+              empi:
+                type: string
+                example: 'epi12'       
+      responses:
+        '200':
+          description: leaves created successfully
+  
+  leaves/{leavesId}:
+    put:
+      summary: update leaves
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: leaves
+          description: leaves detail to be change
+          schema:
+            type: object
+            properties:
+              status: 
+                type: string
+              isComplete:
+                type: boolean 
+            example:
+              status: false
+              isComplete: true    
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':  
+          description: leaves updated successfully
+        '400':
+          description: failed to update  
+
+  /register:
+    post:
+      summary: create register
+      consumes: 
+        - application/json
+      parameters:
+        - in: body
+          name: register
+          description: the  user to add
+          schema:
+            type: object
+            required:
+              - id:
+              - username:
+              - email:
+              - password:
+              - roleid:
+            properties:
+              id:
+                type: string
+                example: 'usr24'
+              username:
+                type: string
+                example: 'binda limbu'
+              email:
+                type: string
+                example: 'limbinda@gmail.com' 
+              password:
+                type: string
+                example: 'dhfbvefuive'
+              roleid:
+                type: string
+                example: 'rl123'       
+      responses:
+        '200':
+          description: user created successfully
+  /setting:
+    get:
+      summary: get all the setting
+      description: this endpoints fetch all setting
+      responses:
+        '200':
+          description: 'successfull fetch'
+        '400':
+          description: 'invalid to setting'
+    post:
+      summary:
+      consumes:
+        - application/json
+      parameters:
+        in: body
+        name: register
+        description: the setting to add
+        schema:
+          type: object
+          required:
+            - id:
+            - setting_name:
+            - setting_value:
+          properties:
+            id:
+              type: string
+              example: 'st123'
+            setting_name:
+              type: string
+              example: 'about'
+            setting_value:
+              type: string
+              example: 'dhdhd'
+      responses:
+        '200':
+          description: inserted into setting
+
+  setting/{settingId}:
+    put:
+      summary: update setting
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: setting
+          description: setting value to be change
+          schema:
+            type: object
+            properties:
+              value:
+                type: string
+              id:
+                type: string
+              isComplete:
+                type: boolean
+            example:
+              value: 'sjhdfb'
+              id: 'st5433'
+              isComplete: true
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: update setting successfully
+        '400':
+          description: check for the correct syntax 
+  /setting/{settingId}:
+    delete:
+      summary: delete setting by id
+      description: delete setting
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: setting delete successfully
+        '400':
+          description: bad request         
+
+          
+
+
+
